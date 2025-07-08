@@ -9,6 +9,8 @@ set -e
 CONFIG_BASE_DIR="./clusters"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+unset KUBECONFIG
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -318,7 +320,7 @@ display_cluster_info() {
     info "Quick Commands:"
     echo "  kubectl --context kind-$cluster_name get nodes"
     echo "  kubectl --context kind-$cluster_name get pods -A"
-    echo "  export KUBECONFIG=$SCRIPT_DIR/$cluster_dir/config/kubeconfig"
+    echo "  export KUBECONFIG=$SCRIPT_DIR/${cluster_dir/.\/}/config/kubeconfig"
     echo ""
     info "Access cluster:"
     echo "  🌐 Direct IP: http://$CLUSTER_IP"
